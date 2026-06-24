@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxury Cars in France — A cinematic automotive campaign across Paris and Normandy by Legefilms.">
+  <title>Luxury Cars in France — Legefilms</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --void:    #020810;
+      --deep:    #050d1c;
+      --navy:    #091428;
+      --card-bg: #0c1c36;
+      --glow:    #0f2448;
+      --accent:  #3a70c8;
+      --white:   #ffffff;
+      --soft:    #c0ccdf;
+      --muted:   #70889e;
+      --subtle:  #3a4e6a;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--void);
+      color: var(--soft);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAVIGATION ─── */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 400;
+      padding: 1.8rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.55s ease, border-color 0.55s ease, backdrop-filter 0.55s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    #nav.scrolled {
+      background: rgba(5, 13, 28, 0.92);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom-color: rgba(58, 112, 200, 0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.45);
+      transition: color 0.4s ease;
+    }
+
+    #nav.scrolled .nav-logo { color: var(--soft); }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.35);
+      border-bottom: 1px solid rgba(192, 204, 223, 0.12);
+      padding-bottom: 1px;
+      transition: color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(192, 204, 223, 0.7);
+      border-bottom-color: rgba(192, 204, 223, 0.38);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--void);
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 8, 16, 0.2) 0%,
+        rgba(2, 8, 16, 0.48) 55%,
+        rgba(2, 8, 16, 0.8) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      width: 100%;
+      max-width: 920px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.55rem;
+      letter-spacing: 0.52em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.38);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.8rem, 7vw, 7rem);
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.42);
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      color: rgba(192, 204, 223, 0.3);
+      margin-bottom: 3.75rem;
+    }
+
+    /* Scroll Now CTA + animated arrows */
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .scroll-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1rem 2.75rem;
+      display: inline-block;
+      transition: background 0.35s ease, border-color 0.35s ease;
+      cursor: pointer;
+    }
+
+    .scroll-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.42);
+    }
+
+    .scroll-arrows {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .scroll-arrows svg {
+      display: block;
+      width: 18px;
+      height: 10px;
+      fill: none;
+      stroke: rgba(192, 204, 223, 0.38);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .arrow-a { animation: chevronDrop 2s ease-in-out infinite; }
+    .arrow-b { animation: chevronDrop 2s ease-in-out 0.32s infinite; }
+
+    @keyframes chevronDrop {
+      0%   { opacity: 0.12; transform: translateY(-3px); }
+      48%  { opacity: 0.62; transform: translateY(3px); }
+      100% { opacity: 0.12; transform: translateY(-3px); }
+    }
+
+    /* ─── LOCATION PANELS ─── */
+    .panel {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      overflow: hidden;
+    }
+
+    .panel-bg {
+      position: absolute;
+      inset: 0;
+      transform: scale(1.08);
+      transition: transform 2.2s cubic-bezier(0.08, 0, 0.1, 1);
+    }
+
+    .panel.visible .panel-bg { transform: scale(1); }
+
+    .panel-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .panel--paris .panel-overlay {
+      background: linear-gradient(
+        145deg,
+        rgba(2, 8, 16, 0.68) 0%,
+        rgba(2, 8, 16, 0.1) 100%
+      );
+    }
+
+    .panel--normandy .panel-overlay {
+      background: linear-gradient(
+        235deg,
+        rgba(2, 8, 16, 0.68) 0%,
+        rgba(2, 8, 16, 0.1) 100%
+      );
+    }
+
+    .panel-caption {
+      position: absolute;
+      z-index: 2;
+      max-width: 480px;
+    }
+
+    .panel--paris .panel-caption {
+      bottom: 5.5rem;
+      left: 5rem;
+    }
+
+    .panel--normandy .panel-caption {
+      bottom: 5.5rem;
+      right: 5rem;
+      text-align: right;
+    }
+
+    .panel-index {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.5rem;
+      letter-spacing: 0.46em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.3);
+      display: block;
+      margin-bottom: 0.9rem;
+    }
+
+    .panel-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.35rem;
+    }
+
+    .panel-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.79rem;
+      line-height: 1.88;
+      color: rgba(192, 204, 223, 0.52);
+      max-width: 340px;
+    }
+
+    .panel--normandy .panel-text { margin-left: auto; }
+
+    /* ─── PARTNERSHIP ─── */
+    .partnership {
+      background:
+        radial-gradient(ellipse 80% 65% at 50% 42%, rgba(15, 36, 72, 0.88) 0%, transparent 65%),
+        var(--void);
+      padding: 10rem 3rem;
+    }
+
+    .partnership-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.53rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.28);
+      display: block;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2rem, 4.8vw, 4.25rem);
+      color: var(--white);
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      max-width: 700px;
+      margin-bottom: 5rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(58, 112, 200, 0.1);
+    }
+
+    .card {
+      background: rgba(12, 28, 54, 0.5);
+      padding: 2.75rem 2.25rem;
+      border-right: 1px solid rgba(58, 112, 200, 0.1);
+      border-top: 1px solid rgba(58, 112, 200, 0.12);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .card:last-child { border-right: none; }
+
+    .card:hover {
+      background: rgba(18, 40, 76, 0.7);
+      border-top-color: rgba(58, 112, 200, 0.28);
+    }
+
+    .card-number {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.52rem;
+      letter-spacing: 0.38em;
+      color: rgba(58, 112, 200, 0.52);
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 1.1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .card-body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      line-height: 1.88;
+      color: rgba(192, 204, 223, 0.44);
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90vh;
+    }
+
+    .about-photo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 7s ease;
+    }
+
+    .about-photo:hover img { transform: scale(1.04); }
+
+    .about-copy {
+      background:
+        radial-gradient(ellipse 120% 85% at 20% 55%, rgba(15, 36, 72, 0.7) 0%, transparent 65%),
+        var(--deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7rem 5.5rem;
+    }
+
+    .about-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.53rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.28);
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.4rem, 4vw, 3.75rem);
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 2rem;
+    }
+
+    .about-rule {
+      width: 32px;
+      height: 1px;
+      background: rgba(58, 112, 200, 0.45);
+      margin-bottom: 2rem;
+    }
+
+    .about-body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 2;
+      color: rgba(192, 204, 223, 0.5);
+      max-width: 420px;
+    }
+
+    .about-body p + p { margin-top: 1.2rem; }
+
+    /* ─── FINAL CTA ─── */
+    .cta-section {
+      background:
+        radial-gradient(ellipse 72% 58% at 50% 52%, rgba(15, 36, 72, 0.85) 0%, transparent 65%),
+        var(--void);
+      padding: 12rem 3rem;
+      text-align: center;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.53rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.28);
+      display: block;
+      margin-bottom: 3rem;
+    }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.4rem, 5.8vw, 5.25rem);
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      max-width: 720px;
+      margin: 0 auto 1.75rem;
+    }
+
+    .cta-sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: rgba(192, 204, 223, 0.35);
+      margin-bottom: 3.5rem;
+    }
+
+    .btn-primary {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--void);
+      background: var(--white);
+      padding: 1.1rem 3.25rem;
+      display: inline-block;
+      transition: opacity 0.35s ease;
+    }
+
+    .btn-primary:hover { opacity: 0.8; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid rgba(58, 112, 200, 0.07);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .footer-brand {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.28);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(192, 204, 223, 0.22);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover { color: rgba(192, 204, 223, 0.52); }
+
+    .footer-copy {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(192, 204, 223, 0.16);
+    }
+
+    /* ─── FADE ANIMATIONS ─── */
+    .fade {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 1.05s ease, transform 1.05s ease;
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade       { opacity: 1; transform: none; transition: none; }
+      .panel-bg   { transition: none; }
+      html        { scroll-behavior: auto; }
+      .arrow-a,
+      .arrow-b    { animation: none; opacity: 0.4; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .card {
+        border-bottom: 1px solid rgba(58, 112, 200, 0.08);
+      }
+      .card:nth-child(2) { border-right: none; }
+      .card:nth-child(3),
+      .card:nth-child(4) { border-top: none; }
+      .card:nth-child(3) { border-bottom: none; }
+      .card:nth-child(4) { border-right: none; border-bottom: none; }
+    }
+
+    @media (max-width: 900px) {
+      .about {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .about-photo { height: 55vh; min-height: 360px; }
+      .about-copy  { padding: 5rem 2.5rem; }
+      .about-body  { max-width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      #nav { padding: 1.5rem 1.75rem; }
+
+      .panel--paris .panel-caption {
+        bottom: 3rem;
+        left: 2.5rem;
+      }
+      .panel--normandy .panel-caption {
+        bottom: 3rem;
+        right: 2.5rem;
+      }
+
+      .partnership { padding: 7rem 1.75rem; }
+      .cta-section { padding: 9rem 1.75rem; }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-content { padding: 0 1.5rem; }
+      .panel-caption { max-width: 280px; }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        border-right: none;
+        border-top: none;
+        border-bottom: 1px solid rgba(58, 112, 200, 0.08);
+      }
+      .card:first-child { border-top: 1px solid rgba(58, 112, 200, 0.12); }
+      .card:last-child  { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <span class="nav-logo">Legefilms</span>
+    <a href="#contact" class="nav-link">Get in Touch</a>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero" id="top" aria-label="Luxury Cars in France hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="/assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow fade">Legefilms Presents</span>
+      <h1 class="hero-title fade">Luxury Cars in France</h1>
+      <p class="hero-subtitle fade">Paris &nbsp;·&nbsp; Normandy &nbsp;·&nbsp; Cinematic Automotive Storytelling</p>
+      <p class="hero-tagline fade">A luxury automotive campaign across France</p>
+
+      <div class="hero-cta-group fade">
+        <a href="#paris" class="scroll-btn">Scroll Now</a>
+        <div class="scroll-arrows" aria-hidden="true">
+          <svg viewBox="0 0 20 11" class="arrow-a"><polyline points="1,1 10,10 19,1"/></svg>
+          <svg viewBox="0 0 20 11" class="arrow-b"><polyline points="1,1 10,10 19,1"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PARIS -->
+  <section class="panel panel--paris" id="paris" aria-label="Paris location">
+    <div class="panel-bg">
+      <img src="/assets/paris.jpg" alt="Paris — cinematic luxury automotive" loading="lazy">
+    </div>
+    <div class="panel-overlay" aria-hidden="true"></div>
+    <div class="panel-caption">
+      <span class="panel-index fade">01</span>
+      <h2 class="panel-heading fade">Paris</h2>
+      <p class="panel-text fade">Iconic streets, refined architecture, and quiet moments built for luxury automotive storytelling.</p>
+    </div>
+  </section>
+
+
+  <!-- NORMANDY -->
+  <section class="panel panel--normandy" id="normandy" aria-label="Normandy location">
+    <div class="panel-bg">
+      <img src="/assets/normandy-cliffs.jpg" alt="Normandy cliffs — cinematic luxury automotive" loading="lazy">
+    </div>
+    <div class="panel-overlay" aria-hidden="true"></div>
+    <div class="panel-caption">
+      <span class="panel-index fade">02</span>
+      <h2 class="panel-heading fade">Normandy</h2>
+      <p class="panel-text fade">Coastal roads, dramatic cliffs, and landscapes shaped for cinematic movement.</p>
+    </div>
+  </section>
+
+
+  <!-- PARTNERSHIP -->
+  <section class="partnership" id="partnership" aria-label="Campaign partnership details">
+    <div class="partnership-inner">
+      <span class="section-eyebrow fade">The Campaign</span>
+      <h2 class="section-headline fade">Your car belongs in a frame<br>people remember.</h2>
+
+      <div class="cards-grid">
+        <div class="card fade">
+          <span class="card-number">01</span>
+          <h3 class="card-title">Luxury Automotive</h3>
+          <p class="card-body">We create cinematic visuals that position your vehicle with presence, atmosphere, and emotion.</p>
+        </div>
+        <div class="card fade">
+          <span class="card-number">02</span>
+          <h3 class="card-title">Paris</h3>
+          <p class="card-body">Architecture, reflections, early mornings, and iconic city textures built around the car.</p>
+        </div>
+        <div class="card fade">
+          <span class="card-number">03</span>
+          <h3 class="card-title">Normandy</h3>
+          <p class="card-body">Open roads, cliffs, weather, coastline, and motion-driven sequences with cinematic scale.</p>
+        </div>
+        <div class="card fade">
+          <span class="card-number">04</span>
+          <h3 class="card-title">Limited Partners</h3>
+          <p class="card-body">We work with a small number of partners so each brand receives focused, intentional storytelling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about" id="about" aria-label="About Geri">
+    <div class="about-photo">
+      <img src="/assets/geri_pfpp.jpg" alt="Geri — Legefilms filmmaker and photographer">
+    </div>
+    <div class="about-copy">
+      <span class="about-eyebrow fade">About</span>
+      <h2 class="about-heading fade">Hi, I'm Geri.</h2>
+      <div class="about-rule fade" aria-hidden="true"></div>
+      <div class="about-body fade">
+        <p>Filmmaker and photographer creating cinematic automotive and travel stories through @legefilms.</p>
+        <p>Focused on luxury cars, brand storytelling, and cinematic campaigns.</p>
+        <p>Luxury Cars in France is an original campaign. Not a commission, but an invitation. I'm looking for partners who believe in the vision behind the campaign.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FINAL CTA -->
+  <section class="cta-section" id="contact" aria-label="Start the conversation">
+    <span class="cta-eyebrow fade">France &nbsp;·&nbsp; 2026</span>
+    <h2 class="cta-heading fade">Let's Create Something Memorable.</h2>
+    <p class="cta-sub fade">Currently selecting a small group of automotive partners for France.</p>
+    <div class="fade">
+      <a href="mailto:geri@legefilms.com" class="btn-primary">Start the Conversation</a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Legefilms</span>
+    <div class="footer-links">
+      <a href="mailto:geri@legefilms.com">geri@legefilms.com</a>
+      <a href="https://instagram.com/legefilms" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <span class="footer-copy">&copy; 2026</span>
+  </footer>
+
+
+  <script>
+    (function () {
+      // Nav scroll state
+      var navEl = document.getElementById('nav');
+      window.addEventListener('scroll', function () {
+        navEl.classList.toggle('scrolled', window.scrollY > 80);
+      }, { passive: true });
+
+      // Respect reduced motion
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduced) {
+        document.querySelectorAll('.fade').forEach(function (el) { el.classList.add('visible'); });
+        document.querySelectorAll('.panel').forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+
+      // Hero: staggered entrance
+      var heroFades = document.querySelectorAll('.hero .fade');
+      heroFades.forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('visible'); }, 480 + i * 180);
+      });
+
+      // All non-hero .fade elements
+      var fadeObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          // Stagger siblings that share a direct parent
+          var siblings = Array.from(entry.target.parentElement.children).filter(function (c) {
+            return c.classList.contains('fade') && !c.classList.contains('visible');
+          });
+          var idx = siblings.indexOf(entry.target);
+          if (idx < 0) idx = 0;
+          setTimeout(function () { entry.target.classList.add('visible'); }, idx * 110);
+          fadeObs.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(':not(.hero) .fade').forEach(function (el) { fadeObs.observe(el); });
+
+      // Panel zoom-in on entrance
+      var panelObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            panelObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.06 });
+
+      document.querySelectorAll('.panel').forEach(function (el) { panelObs.observe(el); });
+    }());
+  </script>
+
+</body>
+</html>
